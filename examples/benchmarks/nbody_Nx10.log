@@ -1,0 +1,12 @@
+Center of mass is (0.399300, 1.096681, 0.927924)
+CPU: Computing all-pairs gravitational forces on 163840 bodies
+CPU: Force vector 0: (-15244.092, -15306.500, -11352.547)
+CPU: 235636.914000 ms
+GPU: Computing all-pairs gravitational forces on 163840 bodies
+768 30 24320
+GPU: Force vector 0: (-15244.091, -15306.499, -11352.548)
+GPU: 757.345000 ms
+GPU: Computing optimized all-pairs gravitational forces on 163840 bodies
+256 90 4096
+GPU: Force vector 0: (-15244.283, -15306.627, -11352.604)
+GPU+shared: 431.415000 ms
