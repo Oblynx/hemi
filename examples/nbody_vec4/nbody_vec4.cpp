@@ -18,7 +18,7 @@
 
 #include "vec4f.h"
 #include "nbody.h"
-#include "timer.h"
+#include "../timer.h"
 #include "hemi/array.h"
 
 extern Vec4f centerOfMass(const Vec4f *bodies, int N);
@@ -76,12 +76,11 @@ int main(void)
 
   printf("CPU: %f ms\n", ms);
 
-  StartTimer();
-
   // Call device function defined in a .cu compilation unit
   // that uses host/device shared functions and class member functions
   printf("GPU: Computing all-pairs gravitational forces on %d bodies\n", N);
-    
+
+  StartTimer();    
   allPairsForcesCuda(forceVectors.writeOnlyDevicePtr(), bodies.readOnlyDevicePtr(), N, false);
     
   printf("GPU: Force vector 0: (%0.3f, %0.3f, %0.3f)\n", 
@@ -92,14 +91,13 @@ int main(void)
   ms = GetTimer();
 
   printf("GPU: %f ms\n", ms);
-  
-  StartTimer();
-  
+    
   // Call a different device function defined in a .cu compilation unit
   // that uses the same host/device shared functions and class member functions 
   // as above
   printf("GPU: Computing optimized all-pairs gravitational forces on %d bodies\n", N);
-    
+  
+  StartTimer();  
   allPairsForcesCuda(forceVectors.writeOnlyDevicePtr(), bodies.readOnlyDevicePtr(), N, true);
     
   printf("GPU: Force vector 0: (%0.3f, %0.3f, %0.3f)\n", 

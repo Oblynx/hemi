@@ -82,3 +82,5 @@ test/test_array_host
 *.plist
 *.dSYM
 
+# In-Tree build dirs
+*/build/*
