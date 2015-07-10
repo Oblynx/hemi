@@ -6,11 +6,11 @@ ARCH := $(shell getconf LONG_BIT)
 
 NVCC := nvcc
 
-ifeq ($(HOST_OS),darwin)
-	CXX := clang++
-else
-	CXX := g++
-endif
+#ifeq ($(HOST_OS),darwin)
+#	CXX := clang++
+#else
+#	CXX := g++
+#endif
 
 STD := -std=c++11
 
@@ -26,7 +26,7 @@ HOST_ONLY_FLAGS := -DHEMI_CUDA_DISABLE
 CXX_FLAGS += -O3
 
 CXX_FLAGS += $(DEBUG_FLAGS)
-NVCC_FLAGS := $(CXX_FLAGS) $(DEBUG_FLAGS_NVCC) --expt-extended-lambda
+NVCC_FLAGS := $(CXX_FLAGS) $(DEBUG_FLAGS_NVCC) -ccbin $(CXX) #--expt-extended-lambda
 
 all: bs_device bs_host_nvcc bs_host
 

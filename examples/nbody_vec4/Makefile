@@ -7,11 +7,11 @@ ARCH := $(shell getconf LONG_BIT)
 NVCC := nvcc
 
 ifeq ($(HOST_OS),darwin)
-	CXX := clang++
+#	CXX := clang++
 	CUDA_PATH ?= /usr/local/cuda
 	LIB_FLAGS := -L$(CUDA_PATH)/lib
 else
-	CXX := g++
+#	CXX := g++
 	CUDA_PATH ?= /usr/local/cuda
 	LIB_FLAGS_32 := -L$(CUDA_PATH)/lib
 	LIB_FLAGS_64 := -L$(CUDA_PATH)/lib64
@@ -32,9 +32,7 @@ CXX_FLAGS  := $(STD) -I../ -I../../ -I$(CUDA_PATH)/include
 CXX_FLAGS += -O3
 
 CXX_FLAGS += $(DEBUG_FLAGS)
-NVCC_FLAGS := $(CXX_FLAGS) $(DEBUG_FLAGS_NVCC)
-
-NVCC_FLAGS := $(CXX_FLAGS) $(DEBUG_FLAGS_NVCC)
+NVCC_FLAGS := $(CXX_FLAGS) $(DEBUG_FLAGS_NVCC) -ccbin $(CXX)
 
 %.o: %.cpp
 	$(CXX)  -c $< -o $@ $(CXX_FLAGS)

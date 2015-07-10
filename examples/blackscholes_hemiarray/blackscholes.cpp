@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <algorithm>
 
-#include "timer.h"
+#include "../timer.h"
 #include "hemi/hemi.h"
 #include "hemi/device_api.h"
 #include "hemi/parallel_for.h"
@@ -49,8 +49,7 @@ void BlackScholes(float *callResult, float *putResult, const float *stockPrice,
      const float *optionStrike, const float *optionYears, float Riskfree,
      float Volatility, int optN)
 {
-    hemi::parallel_for(0, optN, [=] HEMI_LAMBDA (int opt)
-    {
+    hemi::parallel_for(0, optN, [=] HEMI_LAMBDA (int opt) {
         float S = stockPrice[opt];
         float X = optionStrike[opt];
         float T = optionYears[opt]; 
